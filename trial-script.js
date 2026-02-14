@@ -35,8 +35,8 @@
   box.style.maxWidth = "400px";
 
   box.innerHTML = `
-    <h2 style="margin-bottom:15px;color:#28a745;">✅ Trial Activated</h2>
-    <p style="margin-bottom:25px;font-size:16px;">Your access has been successfully activated.</p>
+    <h2 style="margin-bottom:15px;color:#28a745;">✅  Activated</h2>
+    <p style="margin-bottom:25px;font-size:16px;">Your access has been successfully activated   ENJOY.</p>
     <button id="closeTrialPopup" style="
       padding:10px 20px;
       border:none;
@@ -64,3 +64,4 @@
     cloned.currentTime = 1200;
   }
 })();
+
