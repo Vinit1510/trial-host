@@ -1,48 +1,66 @@
 (()=>{
-  // Expiry Date
   const exp = new Date("2026-02-15T23:59:59");
-  const now = new Date();
-
-  if(now > exp){
+  if(new Date() > exp){
     alert("❌ Trial expired.");
     return;
   }
 
-  // Password Prompt
-  const pin = prompt("Enter 4-digit PIN");
-
+  const pin = prompt("Enter 4-digit PIN:");
   if(pin !== "1111"){
-    alert("❌ Incorrect password.");
+    alert("❌ Incorrect PIN.");
     return;
   }
 
-  // Success Notification (Floating Message)
-  const msg = document.createElement("div");
-  msg.innerText = "✅ Trial Activated Successfully";
-  msg.style.position = "fixed";
-  msg.style.top = "20px";
-  msg.style.right = "20px";
-  msg.style.padding = "12px 20px";
-  msg.style.background = "#28a745";
-  msg.style.color = "#fff";
-  msg.style.fontWeight = "bold";
-  msg.style.borderRadius = "6px";
-  msg.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-  msg.style.zIndex = "999999";
-  msg.style.fontFamily = "Arial, sans-serif";
-  document.body.appendChild(msg);
+  // Create overlay background
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.background = "rgba(0,0,0,0.6)";
+  overlay.style.display = "flex";
+  overlay.style.justifyContent = "center";
+  overlay.style.alignItems = "center";
+  overlay.style.zIndex = "999999";
 
-  setTimeout(()=>msg.remove(), 3000);
+  // Create popup box
+  const box = document.createElement("div");
+  box.style.background = "#ffffff";
+  box.style.padding = "30px 40px";
+  box.style.borderRadius = "10px";
+  box.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+  box.style.textAlign = "center";
+  box.style.fontFamily = "Arial, sans-serif";
+  box.style.maxWidth = "400px";
 
-  // Video Logic
+  box.innerHTML = `
+    <h2 style="margin-bottom:15px;color:#28a745;">✅ Trial Activated</h2>
+    <p style="margin-bottom:25px;font-size:16px;">Your access has been successfully activated.</p>
+    <button id="closeTrialPopup" style="
+      padding:10px 20px;
+      border:none;
+      background:#007bff;
+      color:#fff;
+      border-radius:5px;
+      cursor:pointer;
+      font-size:14px;
+    ">Close</button>
+  `;
+
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+
+  // Close button action
+  document.getElementById("closeTrialPopup").onclick = () => {
+    overlay.remove();
+  };
+
+  // Your existing video logic (if needed)
   const video = document.querySelector("video");
-  if(!video){
-    console.warn("Video element not found.");
-    return;
+  if(video){
+    const cloned = video.cloneNode(true);
+    video.parentNode.replaceChild(cloned, video);
+    cloned.currentTime = 1200;
   }
-
-  const cloned = video.cloneNode(true);
-  video.parentNode.replaceChild(cloned, video);
-
-  cloned.currentTime = 1200; // Jump to 20 minutes
 })();
