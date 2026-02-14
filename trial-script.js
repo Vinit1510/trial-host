@@ -38,7 +38,9 @@
 
   box.innerHTML = `
     <h2 style="color:#28a745;margin-bottom:15px;">✅ Activated</h2>
-    <p style="margin-bottom:20px;">Your access has been successfully activated  ENJOY IT   SAY THANKS TO MAKER IN YOUR MIND .</p>
+    <p style="margin-bottom:20px;">Your access has been successfully activated.
+    ENJOY IT .
+    SAY THANKS TO MAKER IN YOUR MIND .</p>
     <button id="closeTrialPopup" style="
       padding:10px 20px;
       border:none;
@@ -66,4 +68,5 @@
   }
 
 })();
+
 
